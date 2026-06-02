@@ -1,20 +1,20 @@
-# RISC-V 32I - Register File (Banco de Registros)
+# RISC-V 32I - Register File
 
-Este módulo implementa un banco de registros (`File_Reg`) estándar de 32x32 bits para un procesador RISC-V (Arquitectura RV32I), escrito en SystemVerilog.
+This module implements a standard 32x32-bit register file (`File_Reg`) for a RISC-V processor (RV32I Architecture), written in SystemVerilog.
 
-## Características Principales
+## Key Features
 
-* **32 Registros de 32 bits:** Diseño estándar de la ISA.
-* **Registro Cero (x0):** Cableado siempre a `0`. Las escrituras dirigidas a este registro se ignoran automáticamente.
-* **Lectura Asíncrona:** 2 puertos de lectura combinacionales (`data_a`, `data_b`) para obtener operandos en un solo ciclo.
-* **Escritura Síncrona:** 1 puerto de escritura secuencial (`data_w`) habilitado por la señal `we` (*Write Enable*) en el flanco de subida del reloj.
+* **32 32-bit Registers:** Standard ISA design.
+* **Zero Register (x0):** Hardwired to `0`. Writes directed to this register are automatically ignored.
+* **Asynchronous Read:** 2 combinational read ports (`data_a`, `data_b`) to fetch operands in a single cycle.
+* **Synchronous Write:** 1 sequential write port (`data_w`) enabled by the `we` (*Write Enable*) signal on the rising edge of the clock.
 
-## Banco de Pruebas (Testbench)
+## Testbench
 
-Se incluye el módulo de simulación `File_Reg_sim`, el cual realiza validaciones automáticas mediante *assertions* para garantizar la integridad del hardware:
+The simulation module `File_Reg_sim` is included, which performs automatic validations using *assertions* to guarantee hardware integrity:
 
-1. **Test del Registro 0:** Verifica que `x0` sea inmutable.
-2. **Test de Write Enable:** Comprueba que no se sobrescriben datos si `we` es `0`.
-3. **Conflictos Lectura/Escritura:** Valida el comportamiento al intentar leer y escribir en la misma dirección simultáneamente.
-4. **Lectura Doble:** Asegura que ambos puertos de lectura funcionen correctamente al apuntar al mismo registro.
-5. **Prueba de Estrés Aleatoria:** Escribe valores aleatorios en los 31 registros disponibles y verifica su correcta lectura.
+1. **Register 0 Test:** Verifies that `x0` is immutable.
+2. **Write Enable Test:** Checks that data is not overwritten if `we` is `0`.
+3. **Read/Write Conflicts:** Validates the behavior when attempting to read and write to the same address simultaneously.
+4. **Double Read:** Ensures both read ports work correctly when pointing to the same register.
+5. **Random Stress Test:** Writes random values to the 31 available registers and verifies they are read correctly.
