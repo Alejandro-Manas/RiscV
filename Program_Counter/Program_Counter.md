@@ -12,7 +12,7 @@ This module implements the main Program Counter (`Program_Counter`) for a 32-bit
 
 ## Testbench
 
-The simulation module `Program_Counter_sim` is included, featuring automated verification through SystemVerilog *assertions*. Stimuli are intentionally injected on the falling edge of the clock (`negedge clk`) to prevent race conditions and ensure accurate sampling. The directed testing verifies the following core behaviors:
+The simulation module `Program_Counter_sim` is included, featuring automated verification through SystemVerilog *assertions*. Input signals are intentionally applied on the falling edge of the clock (`negedge clk`) to prevent race conditions and ensure accurate sampling. The directed testing verifies the following core behaviors:
 
 1. **Initialization & Reset:** Confirms that the active-low synchronous reset correctly forces the PC to `0x0000_0000` precisely on the clock edge.
 2. **Enable (Stall) Logic:** Validates that the PC captures the `pc_next` address when `pc_en` is active, and perfectly retains its current state (stalls) when `pc_en` is disabled.
