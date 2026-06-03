@@ -12,7 +12,7 @@ This module implements the Data Memory (RAM) for a 32-bit RISC-V processor (RV32
 
 ## Testbench
 
-The `DMEM_sim` module rigorously verifies the memory through cycle-accurate SystemVerilog assertions. The test environment includes a parameterized clock generator (configured for 100 MHz) and drives stimuli on the negative edge of the clock to prevent race conditions.
+The `DMEM_sim` module rigorously verifies the memory through cycle-accurate SystemVerilog assertions. The test environment includes a parameterized clock generator (configured for 100 MHz) and updates the input values on the negative edge of the clock to prevent race conditions.
 
 Validated critical cases:
 1. **Standard R/W:** Correct synchronous data storage and subsequent combinational retrieval.
