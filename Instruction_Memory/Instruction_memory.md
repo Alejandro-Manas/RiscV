@@ -16,4 +16,3 @@ The simulation module `IMEM_sim` is included, featuring automated verification t
 
 Test vectors are sequentially driven to the address bus, and the module verifies the following behaviors:
 1. **Accurate Data Fetching:** Confirms that addressing the memory at `0x0`, `0x4`, and `0x8` correctly retrieves the exact 32-bit hexadecimal values pre-loaded into the first three rows of the memory matrix.
-2. **Combinational Logic:** Validates the asynchronous nature of the module, ensuring the `instruction` output updates instantaneously without relying on clock edges.
