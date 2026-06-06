@@ -1,30 +1,30 @@
 # RISC-V Data Memory (DMEM)
 
-Este directorio contiene la implementación en SystemVerilog de la Memoria de Datos (Data Memory) para un procesador basado en la arquitectura RISC-V, junto con su respectivo banco de pruebas (testbench).
+This directory contains the SystemVerilog implementation of the Data Memory module for a RISC-V softcore processor, along with its corresponding testbench.
 
-## Características Principales
+## Key Features
 
-* **Capacidad:** 4 KB (1024 palabras de 32 bits).
-* **Lectura Asíncrona:** El bus de datos de lectura (`r_data`) es combinacional y refleja instantáneamente el contenido de la dirección solicitada.
-* **Escritura Síncrona con Máscara de Bytes:** Utiliza una señal `we` (Write Enable) de 4 bits para permitir la escritura independiente de cada uno de los 4 bytes que componen una palabra de 32 bits. Esto es fundamental para dar soporte a las instrucciones de almacenamiento de RISC-V (`sb`, `sh`, `sw`).
-* **Alineación de Memoria:** El acceso interno ignora los dos bits menos significativos de la dirección (`adress[31:2]`), garantizando la correcta alineación a palabras de 32 bits.
+* **Capacity:** 4 KB (1024 x 32-bit words).
+* **Asynchronous Read:** The read data bus (`r_data`) is combinational and instantly reflects the content of the requested address.
+* **Synchronous Write with Byte Enables:** Utilizes a 4-bit `we` (Write Enable) mask to allow independent writing of each of the 4 bytes within a 32-bit word. This is crucial for supporting RISC-V store instructions (`sb`, `sh`, `sw`).
+* **Memory Alignment:** Internal access safely ignores the two least significant bits of the address (`adress[31:2]`), ensuring proper 32-bit word alignment.
 
-## Puertos del Módulo
+## Module Ports
 
-| Señal | Dirección | Ancho (bits) | Descripción |
+| Signal | Direction | Width (bits) | Description |
 | :--- | :--- | :---: | :--- |
-| `clk` | Input | 1 | Reloj del sistema. |
-| `we` | Input | 4 | Señales de habilitación de escritura (un bit por cada byte de la palabra). |
-| `w_data` | Input | 32 | Datos a escribir en memoria. |
-| `adress` | Input | 32 | Dirección de memoria solicitada. |
-| `r_data` | Output| 32 | Datos leídos de la memoria. |
+| `clk` | Input | 1 | System clock. |
+| `we` | Input | 4 | Write enable mask (one bit per byte in the data word). |
+| `w_data` | Input | 32 | Data to be written into memory. |
+| `adress` | Input | 32 | Requested memory address. |
+| `r_data` | Output| 32 | Data read from memory. |
 
-## Simulación y Verificación (`DMEM_sim`)
+## Simulation and Verification (`DMEM_sim`)
 
-El diseño incluye un testbench exhaustivo (`DMEM_sim.sv`) que verifica la integridad de las operaciones de lectura y escritura. El entorno de simulación realiza lo siguiente:
+The design includes a comprehensive testbench (`DMEM_sim.sv`) to verify the integrity of the read/write operations. The simulation environment executes the following verification steps:
 
-1. **Inicialización:** Recorre toda la memoria inicializando los valores a cero.
-2. **Pruebas de Estrés Aleatorias:** Ejecuta 10,000 iteraciones con datos y direcciones aleatorias (`$urandom()`) para cada una de las 16 combinaciones posibles de la máscara de escritura (`we`).
-3. **Aserciones Automáticas:** Comprueba de forma estricta mediante aserciones (`assert`) que:
-   * Los bytes con el bit `we` activado se escriben correctamente.
-   * Los bytes con el bit `we` desactivado mantienen su estado previo sin corromperse.
+1. **Initialization:** Iterates through the entire memory array, initializing all values to zero.
+2. **Randomized Stress Testing:** Performs 10,000 randomized iterations (using `$urandom()` for both data and word-aligned addresses) for each of the 16 possible write mask (`we`) combinations.
+3. **Automated Assertions:** Strictly verifies memory behavior using SystemVerilog assertions (`assert`) to ensure:
+   * Bytes with an active `we` bit are successfully updated.
+   * Bytes with an inactive `we` bit retain their previous state without data corruption.
