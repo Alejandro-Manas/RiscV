@@ -4,7 +4,7 @@ This directory contains the SystemVerilog implementation of the Data Memory modu
 
 ## Key Features
 
-* **Capacity:** 4 KB (1024 x 32-bit words).
+* **Capacity:** 8 KB (2047 x 32-bit words).
 * **Asynchronous Read:** The read data bus (`r_data`) is combinational and instantly reflects the content of the requested address.
 * **Synchronous Write with Byte Enables:** Utilizes a 4-bit `we` (Write Enable) mask to allow independent writing of each of the 4 bytes within a 32-bit word. This is crucial for supporting RISC-V store instructions (`sb`, `sh`, `sw`).
 * **Memory Alignment:** Internal access safely ignores the two least significant bits of the address (`adress[31:2]`), ensuring proper 32-bit word alignment.
