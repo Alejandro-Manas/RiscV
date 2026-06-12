@@ -6,7 +6,7 @@ This module implements the top-level entity (`Top_Module`) of a single-cycle 32-
 
 * **Architecture:** RV32I Base Integer Instruction Set.
 * **Design Type:** Single-cycle structural integration with optimized multiplexing logic for datapath steering.
-* **Instruction Fetch & Decoding:** Coordinates the program counter flow to fetch instructions from the Instruction Memory (`IMEM`), slicing the 32-bit vector inline into standardized RISC-V fields (`op_code`, `funct_3`, `funct_7_5`, and register sub-fields).
+* **Instruction Slicing & Decoding:** Sequentially addresses the independent Instruction Memory (`IMEM`) via the Program Counter, isolating and slicing the 32-bit vector inline into standardized, unprivileged RISC-V fields (`op_code`, `funct_3`, `funct_7_5`, and register sub-fields) without requiring explicit memory ordering fences.
 * **Unified Control & Execution:** Directly maps the `Control_Unit` outputs to govern immediate extraction, ALU routing, and writeback targets.
 * **Dynamic Branch Resolution:** Implements a localized combinational evaluation block that resolves conditional branches (`BEQ`, `BNE`, `BLT`, `BGE`, `BLTU`, `BGEU`) using the ALU flags, dynamically overriding the sequential execution flow (`PC + 4`).
 * **Sub-Module Cohesion:** Integrates the following core structural blocks:
