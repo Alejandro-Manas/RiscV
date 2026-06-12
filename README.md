@@ -27,7 +27,7 @@ The repository is organized into isolated, self-contained functional subdirector
 * [`Instruction_Memory/`](Instruction_Memory/Instruction_memory.md) – Local ROM simulation block (`IMEM.sv`) hosting executable firmware binaries.
 * [`Load_Store_Unit/`](Load_Store_Unit/Load_Store_Unit.md) – Structural memory alignment administrator managing unaligned byte, half-word, and word memory transactions.
 * [`Program_Counter/`](Program_Counter/Program_Counter.md) – Upstream synchronous register updating sequential execution (`PC + 4`) or target branch/jump addresses.
-* [`Top_Module/`](Top_Module/Top_Module.md) – The root structural entity binding all processing blocks, steering multiplexers, and dynamic branch evaluation logic.
+* [`Top_Module/`](Top_Module/Top_Module.md) – The root structural entity.
 
 ---
 
