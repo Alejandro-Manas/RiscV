@@ -1,0 +1,21 @@
+# Global Test Vectors
+
+This directory serves as the exclusive repository for the official, pre-compiled 32-bit hexadecimal instruction vectors (`*.hex`) used to drive full-system validation and ISA compliance testing on the `Top_Module`.
+
+## Directory Purpose
+
+This folder contains **only** the raw firmware binaries derived from the official RISC-V Architecture Compliance Suite. Unlike individual unit tests which reside locally within their respective module folders (e.g., `ALU/`, `File_Reg/`), these files are used strictly for top-level, end-to-end simulation of the completed single-cycle core.
+
+## File Format Specifications
+
+To ensure seamless compatibility with hardware simulation environments and EDA tooling, all files in this directory adhere to the following formatting rules:
+* **Word Width:** 32-bit raw hexadecimal characters representing architectural instructions.
+* **Line Structure:** One single instruction word per line (e.g., `00200093`).
+* **Clean Encoding:** Stripped of formatting prefixes (no `0x`) and visual segmentations (no underscores `_`), allowing direct synthesis and parsing.
+
+## Simulation Deployment
+
+During system-level verification, the top-level testbench handles these files dynamically. The test framework targets this directory and loads the selected vector stream directly into the internal Instruction Memory (`IMEM`) block using standard memory initialization tasks:
+
+```systemverilog
+$readmemh("global_test/rv32ui-p-add.hex", instruction_memory.mem_array);
