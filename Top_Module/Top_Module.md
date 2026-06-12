@@ -26,7 +26,7 @@ The core orchestrates data movement through three critical structural multiplexe
 
 ## Verification Strategy
 
-As the structural crown of the hardware design, the verification of the `Top_Module` focuses on system-level validation rather than isolated pin stimulation:
+The microarchitecture and instruction execution of this core have been fully validated using the **Official RISC-V Architecture Compliance Test Suite** from RISC-V International. Instead of relying on custom or non-exhaustive testbenches, the verification process was driven by executing the official pre-compiled hexadecimal test vectors for every single function within the RV32I ISA.
 
-1. **Firmware Stream Simulation:** The entire integrated system is stressed inside a top-level testbench environment by feeding real RISC-V hexadecimal instruction streams into the `IMEM`. This validates structural interconnect integrity, timing margins, and data dependencies during back-to-back operations.
-2. **Memory Alignment Validation:** The integration between the `LSU` and the `DMEM` ensures that byte, half-word, and word reads/writes are correctly routed and synchronized to the clock edge, catching any boundary or sign-extension errors across the system matrix.
+* **Official ISA Compliance Vectors:** The `Top_Module` was rigorously tested by loading and executing hundreds of specialized `.hex` firmware streams directly into the `IMEM`. Every individual instruction category (such as arithmetic, logical shifts, load/store boundaries, and conditional branches) was stressed using these official binary patterns to evaluate edge cases and overflow conditions.
+* **Function-by-Function Validation:** By running these official pre-compiled test blocks systematically through a top-level simulation suite, the processor's datapath, register state transitions, and memory operations were strictly proven to comply with the official RISC-V standard at a bit-accurate level.
