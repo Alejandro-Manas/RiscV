@@ -64,4 +64,5 @@ Rather than relying on non-exhaustive, custom-written simulation routines, the t
 ## Tools and Workflow
 
 * **Hardware Description Language:** SystemVerilog
-* **Synthesis & Simulation Suites:** Compatible with industry-standard EDA tools (e.g., AMD Xilinx Vivado, Intel Quartus Prime, ModelSim/QuestaSim).
+* **Primary EDA Toolchain:** Designed, simulated, and structurally verified using **AMD Xilinx Vivado**.
+* **Framework Compatibility:** Written in portable, synthesizable IEEE 1800 SystemVerilog, maintaining full compliance for alternative deployment in Intel Quartus Prime or ModelSim/QuestaSim environments.
