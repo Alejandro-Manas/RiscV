@@ -93,7 +93,7 @@ module DMEM_sim(
         adress  = '0;
 
         //Inicializating all values
-        for(int i = 0; i < 2047; i++) begin
+        for(int i = 0; i < 2048; i++) begin
             @(negedge clk);
             we      = '1;
             adress  = i * 4;
