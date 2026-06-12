@@ -29,7 +29,7 @@ module DMEM(
     output  logic [31:0]    r_data
     );
 
-    logic [31:0] ram [0:1023];
+    logic [31:0] ram [0:2047];
     
     assign r_data = ram[adress[31:2]];
 
