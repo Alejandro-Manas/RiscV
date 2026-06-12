@@ -25,7 +25,7 @@ module IMEM(
     output  logic [31:0]    instruction   
     );
 
-    logic [31:0] instruction_memory [0:1023];
+    logic [31:0] instruction_memory [0:2047];
 
     initial begin
         $readmemh("program.hex", instruction_memory);
