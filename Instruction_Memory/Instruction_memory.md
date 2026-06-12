@@ -5,7 +5,7 @@ This module implements the Instruction Memory for a 32-bit RISC-V processor (RV3
 ## Key Features
 
 * **Architecture:** RISC-V (RV32I).
-* **Storage Capacity:** 4 Kilobytes (1024 words x 32 bits). This sizing allows modern synthesis tools (like Xilinx Vivado) to infer exactly one standard Block RAM (e.g., BRAM36E1) without consuming combinational LUTs.
+* **Storage Capacity:** 8 Kilobytes (2048 words x 32 bits). This sizing allows modern synthesis tools (like Xilinx Vivado) to infer exactly one standard Block RAM (e.g., BRAM36E1) without consuming combinational LUTs.
 * **Initialization:** Pre-loaded at synthesis/simulation time via the `$readmemh` system function, reading a standard hexadecimal memory file (`program.hex`).
 * **Word-Aligned Addressing:** Implements byte-addressable translation. Since the RISC-V Program Counter increments by 4 for each 32-bit instruction, the memory matrix is indexed using `address[31:2]` to ignore the two least significant bits, effectively converting the +4 byte step into a +1 array row step.
 * **Asynchronous Read:** Purely combinational data fetching. The instruction is immediately available on the output bus as soon as the input address settles.
