@@ -1,6 +1,6 @@
 # RV32I Single-Core Processor
 
-A high-performance, single-cycle 32-bit RISC-V processing core implementing the unprivileged **RV32I Base Integer Instruction Set** written in SystemVerilog. The microarchitecture is designed as a pure IP processing block focused on structural modularity, clean datapath steering, and explicit industry-standard compliance.
+A single-cycle 32-bit RISC-V processing core implementing the unprivileged **RV32I Base Integer Instruction Set** written in SystemVerilog. The microarchitecture is designed as a pure IP processing block focused on structural modularity, clean datapath steering, and explicit industry-standard compliance.
 
 ---
 
