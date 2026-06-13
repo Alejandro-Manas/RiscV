@@ -66,3 +66,18 @@ Rather than relying on non-exhaustive, custom-written simulation routines, the t
 * **Hardware Description Language:** SystemVerilog
 * **Primary EDA Toolchain:** Designed, simulated, and structurally verified using **AMD Xilinx Vivado**.
 * **Framework Compatibility:** Written in portable, synthesizable IEEE 1800 SystemVerilog, maintaining full compliance for alternative deployment in Intel Quartus Prime or ModelSim/QuestaSim environments.
+
+---
+
+## Future Roadmap
+
+The development of this RV32I core is structured around two distinct evolutionary tracks aimed at shifting the architecture from a functional single-cycle baseline into a high-performance, system-level design:
+
+### Track 1: Microarchitectural Optimization (High-Performance Core)
+* **5-Stage Pipelining:** Transition the single-cycle execution into a classic 5-stage RISC pipeline (`Fetch`, `Decode`, `Execute`, `Memory`, `Writeback`).
+* **Hazard Resolution Logic:** Design and integrate a dedicated hazard detection and forwarding unit to resolve data dependencies dynamically (structural stalls and bypass networks) and mitigate control hazards caused by branch mispredictions via pipeline flushing mechanics.
+
+### Track 2: System-on-Chip (SoC) & MCU Expansion
+* **Memory-Mapped GPIO:** Expose physical pin interfaces to the top layer by mapping hardware registers into the `DMEM` address space, enabling full unprivileged software control over software-defined inputs and outputs.
+* **Bare-Metal Software Libraries:** Develop native C driver abstraction layers to facilitate clean peripheral access and register manipulation.
+* **UART Bootloader & Dynamic IMEM Reprogramming:** Integrate an autonomous UART hardware peripheral capable of capturing incoming binary streams to overwrite the internal Instruction Memory (`IMEM`) dynamically on-chip, achieving a fully self-contained, field-reprogrammable Microcontroller Unit (MCU).
